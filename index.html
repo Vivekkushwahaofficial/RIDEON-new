@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bike Rental System</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="bikerental.css">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- ========================= NAVBAR ========================= -->
+  <header class="navbar">
+    <div class="logo">Ride<span>On</span></div>
+
+    <!-- Mobile Menu Icon -->
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+    <nav id="navMenu" class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#bikes">Bike List</a>
+      <a href="#about">About Us</a>
+      <a href="#services">Services</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact Us</a>
+      <a class="login-btn" onclick="openLogin()">Log In</a>
+    </nav>
+  </header>
+
+  <!-- ========================= LOGIN POPUP ========================= -->
+  <div id="loginPopup" class="popup">
+    <div class="popup-content">
+      <span class="close" onclick="closeLogin()">&times;</span>
+      <h2>Sign In</h2>
+
+      <input id="loginEmail" type="email" placeholder="Enter email">
+      <input id="loginPassword" type="password" placeholder="Enter password">
+
+      <button onclick="loginUser()">Login</button>
+
+      <p>Don’t have an account?
+        <a href="javascript:void(0)" onclick="openSignup()">Create Account</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- ========================= SIGNUP POPUP ========================= -->
+  <div id="signupPopup" class="popup">
+    <div class="popup-content">
+      <span class="close" onclick="closeSignup()">&times;</span>
+      <h2>Create Account</h2>
+
+      <input id="name" type="text" placeholder="Enter name">
+      <input id="email" type="email" placeholder="Enter email">
+      <input id="phone" type="text" placeholder="Enter phone">
+      <input id="password" type="password" placeholder="Create password">
+      <input id="cpassword" type="password" placeholder="Confirm password">
+
+      <button onclick="registerUser()">Register</button>
+
+      <p>Already have an account?
+        <a href="javascript:void(0)" onclick="openLogin()">Login</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- ========================= HERO SECTION ========================= -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>Ride Your Dream<br>Bike Today</h1>
+      <p>Fast, Affordable & Easy Bike Rental Service</p>
+      <button class="hero-btn">Book Your Ride</button>
+    </div>
+  </section>
+
+  <!-- ========================= BIKE LIST ========================= -->
+  <section id="bikes" class="bike-list-section">
+    <h2 class="section-title">Available <span>Bikes</span></h2>
+
+    <div class="bike-container">
+
+      <!-- 12 Bikes -->
+      <div class="bike-card">
+        <img src="image/r15 v5.jpeg" alt="R15 V5">
+        <h3>R15 V5</h3>
+        <p class="price">₹1200 / Day</p>
+        <button class="rent-btn">Book Now</button>
+      </div>
+
+      <div class="bike-card">
+        <img src="image/ktm duke.jpeg" alt="KTM Duke">
+        <h3>KTM Duke</h3>
+        <p class="price">₹1200 / Day</p>
+        <button class="rent-btn">Book Now</button>
+      </div>
+
+      <div class="bike-card">
+        <img src="image/mt 15.jpeg" alt="MT 15">
+        <h3>MT 15</h3>
+        <p class="price">₹1000 / Day</p>
+        <button class="rent-btn">Book Now</button>
+      </div>
+
+      <div class="bike-card">
+        <img src="image/royal enfield.jpeg" alt="Royal Enfield">
+        <h3>Classic 350</h3>
+        <p class="price">₹1200 / Day</p>
+        <button class="rent-btn">Book Now</button>
+      </div>
+
+      <div class="bike-card">
+        <img src="image/splender plus.jpeg" alt="Splendor Plus">
+        <h3>Splendor Plus</h3>
+        <p class="price">₹700 / Day</p>
+        <button class="rent-btn">Book Now</button>
+      </div>
+
+      <div class="bike-card">
+        <img src="image/glammar.jpeg" alt="Glamour">
+        <h3>Glamour</h3>
+        <p class="price">₹800 / Day</p>
+        <button class="rent-btn">Book Now</button>
+      </div>
+
+      <div class="bike-card">
+        <img src="image/shine.jpeg" alt="Honda Shine">
+        <h3>Honda Shine</h3>
+        <p class="price">₹800 / Day</p>
+        <button class="rent-btn">Book Now</button>
+      </div>
+
+      <div class="bike-card">
+        <img src="image/royal enfield hunter.jpeg" alt="Hunter">
+        <h3>Royal Enfield Hunter</h3>
+        <p class="price">₹1000 / Day</p>
+        <button class="rent-btn">Book Now</button>
+      </div>
+
+      <div class="bike-card">
+        <img src="image/honda activa.jpeg" alt="Activa">
+        <h3>Honda Activa</h3>
+        <p class="price">₹600 / Day</p>
+        <button class="rent-btn">Book Now</button>
+      </div>
+
+      <div class="bike-card">
+        <img src="image/jupiter.jpeg" alt="Jupiter">
+        <h3>Jupiter</h3>
+        <p class="price">₹600 / Day</p>
+        <button class="rent-btn">Book Now</button>
+      </div>
+
+      <div class="bike-card">
+        <img src="image/pulsar 150.jpeg" alt="Pulsar 150">
+        <h3>TVS Pulsar</h3>
+        <p class="price">₹500 / Day</p>
+        <button class="rent-btn">Book Now</button>
+      </div>
+
+      <div class="bike-card">
+        <img src="image/ola electric.jpeg" alt="Ola Electric">
+        <h3>Ola Electric S1</h3>
+        <p class="price">₹500 / Day</p>
+        <button class="rent-btn">Book Now</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================= ABOUT SECTION ========================= -->
+  <section id="about" class="about">
+    <h2 class="section-title">About <span>Bike</span></h2>
+
+    <div class="about-box">
+      <img src="image/image.jpeg" alt="Showroom">
+
+      <div class="about-content">
+        <h3>We Make Your Ride Better</h3>
+        <p>
+          We provide top-quality bikes with affordable rentals,
+          smooth booking, and 24/7 customer support.
+        </p>
+        <p>
+          Choose from scooters, sports bikes, cruisers and more —
+          all at the best rental prices.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= SERVICES ========================= -->
+  <section id="services" class="services">
+    <h2 class="section-title">Our <span>Services</span></h2>
+
+    <div class="service-container">
+      <div class="service-box">
+        <i class="fa-solid fa-motorcycle"></i>
+        <h3>Bike Rentals</h3>
+        <p>Choose from scooters to superbikes.</p>
+      </div>
+
+      <div class="service-box">
+        <i class="fa-solid fa-headset"></i>
+        <h3>24/7 Support</h3>
+        <p>Instant help anytime.</p>
+      </div>
+
+      <div class="service-box">
+        <i class="fa-solid fa-location-dot"></i>
+        <h3>Easy Pickup</h3>
+        <p>Multiple pickup locations.</p>
+      </div>
+
+      <div class="service-box">
+        <i class="fa-solid fa-wallet"></i>
+        <h3>Affordable Prices</h3>
+        <p>No hidden charges.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= REVIEWS ========================= -->
+  <section id="reviews" class="reviews">
+    <h2 class="section-title">User <span>Reviews</span></h2>
+
+    <div class="review-container">
+      <div class="review-box"><p>"Amazing service!"</p><h4>— Akash Verma</h4></div>
+      <div class="review-box"><p>"Affordable and fast!"</p><h4>— Priya Sharma</h4></div>
+      <div class="review-box"><p>"Bike was perfect."</p><h4>— Rohan Singh</h4></div>
+    </div>
+  </section>
+
+  <!-- ========================= CONTACT ========================= -->
+  <section id="contact" class="contact-section">
+    <h2 class="section-title">Contact <span>Us</span></h2>
+
+    <form class="contact-form">
+      <h3>Get In Touch</h3>
+
+      <input type="text" placeholder="Your name" required>
+      <input type="email" placeholder="Your email" required>
+      <input type="text" placeholder="Your phone" required>
+      <textarea placeholder="Your message" required></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <!-- ========================= FOOTER ========================= -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-box">
+        <h4>Our Branches</h4>
+        <p>Bhopal</p><p>Indore</p><p>Mumbai</p><p>Delhi</p>
+      </div>
+
+      <div class="footer-box">
+        <h4>Quick Links</h4>
+        <p>Home</p><p>Vehicles</p><p>Services</p><p>Reviews</p><p>Contact</p>
+      </div>
+
+      <div class="footer-box">
+        <h4>Contact Info</h4>
+        <p>Phone: +123-456-7890</p>
+        <p>Email: bikerent@gmail.com</p>
+        <p>Location: Bhopal, India</p>
+      </div>
+
+      <div class="footer-box">
+        <h4>Social</h4>
+        <p><i class="fa-brands fa-facebook"></i> Facebook</p>
+        <p><i class="fa-brands fa-instagram"></i> Instagram</p>
+        <p><i class="fa-brands fa-x-twitter"></i> X</p>
+        <p><i class="fa-brands fa-linkedin"></i> LinkedIn</p>
+      </div>
+    </div>
+
+    <p class="footer-bottom">Made With ❤️ | All Rights Reserved</p>
+  </footer>
+
+  <!-- JS -->
+  <script src="bikerental.js"></script>
+
+</body>
+</html>
