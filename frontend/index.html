@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Bike Rental System</title>
 
   <!-- CSS -->
-  <link rel="stylesheet" href="bikerental.css">
+  <link rel="stylesheet" href="css/style.css">
 
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -34,18 +36,43 @@
   </header>
 
   <!-- ========================= LOGIN POPUP ========================= -->
-  <div id="loginPopup" class="popup">
+<div id="loginPopup" class="popup">
     <div class="popup-content">
       <span class="close" onclick="closeLogin()">&times;</span>
       <h2>Sign In</h2>
 
-      <input id="loginEmail" type="email" placeholder="Enter email">
-      <input id="loginPassword" type="password" placeholder="Enter password">
+      <form id="login-form">
+          <label style="text-align:left; display:block; margin-bottom:5px;">Email</label>
+          <input id="login-email" type="email" placeholder="Enter email" required style="width:100%; padding:10px; margin-bottom:10px;">
+          
+          <label style="text-align:left; display:block; margin-bottom:5px;">Password</label>
+          <input id="login-password" type="password" placeholder="Enter password" required style="width:100%; padding:10px; margin-bottom:20px;">
+          
+          <button type="submit" style="width:100%; padding:10px; background:gold; border:none; cursor:pointer;">Login</button>
+      </form>
 
-      <button onclick="loginUser()">Login</button>
-
-      <p>Don’t have an account?
+      <p style="margin-top:10px;">Don’t have an account?
         <a href="javascript:void(0)" onclick="openSignup()">Create Account</a>
+      </p>
+    </div>
+  </div>
+
+  <div id="signupPopup" class="popup">
+    <div class="popup-content">
+      <span class="close" onclick="closeSignup()">&times;</span>
+      <h2>Create Account</h2>
+
+      <form id="signup-form">
+          <input id="signup-name" type="text" placeholder="Enter name" required>
+          <input id="signup-email" type="email" placeholder="Enter email" required>
+          <input id="signup-phone" type="text" placeholder="Enter phone" required>
+          <input id="signup-password" type="password" placeholder="Create password" required>
+          
+          <button type="submit">Register</button>
+      </form>
+
+      <p>Already have an account?
+        <a href="javascript:void(0)" onclick="openLogin()">Login</a>
       </p>
     </div>
   </div>
@@ -73,103 +100,17 @@
   <!-- ========================= HERO SECTION ========================= -->
   <section id="home" class="hero">
     <div class="hero-content">
-      <h1>Ride Your Dream<br>Bike Today</h1>
+      <h1>Ride Your Dream<br><span>Bike Today</span></h1>
       <p>Fast, Affordable & Easy Bike Rental Service</p>
       <button class="hero-btn">Book Your Ride</button>
     </div>
   </section>
 
   <!-- ========================= BIKE LIST ========================= -->
-  <section id="bikes" class="bike-list-section">
+<section id="bikes" class="bike-list-section">
     <h2 class="section-title">Available <span>Bikes</span></h2>
-
-    <div class="bike-container">
-
-      <!-- 12 Bikes -->
-      <div class="bike-card">
-        <img src="image/r15 v5.jpeg" alt="R15 V5">
-        <h3>R15 V5</h3>
-        <p class="price">₹1200 / Day</p>
-        <button class="rent-btn">Book Now</button>
-      </div>
-
-      <div class="bike-card">
-        <img src="image/ktm duke.jpeg" alt="KTM Duke">
-        <h3>KTM Duke</h3>
-        <p class="price">₹1200 / Day</p>
-        <button class="rent-btn">Book Now</button>
-      </div>
-
-      <div class="bike-card">
-        <img src="image/mt 15.jpeg" alt="MT 15">
-        <h3>MT 15</h3>
-        <p class="price">₹1000 / Day</p>
-        <button class="rent-btn">Book Now</button>
-      </div>
-
-      <div class="bike-card">
-        <img src="image/royal enfield.jpeg" alt="Royal Enfield">
-        <h3>Classic 350</h3>
-        <p class="price">₹1200 / Day</p>
-        <button class="rent-btn">Book Now</button>
-      </div>
-
-      <div class="bike-card">
-        <img src="image/splender plus.jpeg" alt="Splendor Plus">
-        <h3>Splendor Plus</h3>
-        <p class="price">₹700 / Day</p>
-        <button class="rent-btn">Book Now</button>
-      </div>
-
-      <div class="bike-card">
-        <img src="image/glammar.jpeg" alt="Glamour">
-        <h3>Glamour</h3>
-        <p class="price">₹800 / Day</p>
-        <button class="rent-btn">Book Now</button>
-      </div>
-
-      <div class="bike-card">
-        <img src="image/shine.jpeg" alt="Honda Shine">
-        <h3>Honda Shine</h3>
-        <p class="price">₹800 / Day</p>
-        <button class="rent-btn">Book Now</button>
-      </div>
-
-      <div class="bike-card">
-        <img src="image/royal enfield hunter.jpeg" alt="Hunter">
-        <h3>Royal Enfield Hunter</h3>
-        <p class="price">₹1000 / Day</p>
-        <button class="rent-btn">Book Now</button>
-      </div>
-
-      <div class="bike-card">
-        <img src="image/honda activa.jpeg" alt="Activa">
-        <h3>Honda Activa</h3>
-        <p class="price">₹600 / Day</p>
-        <button class="rent-btn">Book Now</button>
-      </div>
-
-      <div class="bike-card">
-        <img src="image/jupiter.jpeg" alt="Jupiter">
-        <h3>Jupiter</h3>
-        <p class="price">₹600 / Day</p>
-        <button class="rent-btn">Book Now</button>
-      </div>
-
-      <div class="bike-card">
-        <img src="image/pulsar 150.jpeg" alt="Pulsar 150">
-        <h3>TVS Pulsar</h3>
-        <p class="price">₹500 / Day</p>
-        <button class="rent-btn">Book Now</button>
-      </div>
-
-      <div class="bike-card">
-        <img src="image/ola electric.jpeg" alt="Ola Electric">
-        <h3>Ola Electric S1</h3>
-        <p class="price">₹500 / Day</p>
-        <button class="rent-btn">Book Now</button>
-      </div>
-
+    <div id="bike-container" class="bike-container">
+        <p style="text-align:center; width:100%;">Loading bikes from database...</p>
     </div>
   </section>
 
@@ -178,7 +119,7 @@
     <h2 class="section-title">About <span>Bike</span></h2>
 
     <div class="about-box">
-      <img src="image/image.jpeg" alt="Showroom">
+      <img src="/image/image.jpeg" alt="Showroom">
 
       <div class="about-content">
         <h3>We Make Your Ride Better</h3>
@@ -230,9 +171,18 @@
     <h2 class="section-title">User <span>Reviews</span></h2>
 
     <div class="review-container">
-      <div class="review-box"><p>"Amazing service!"</p><h4>— Akash Verma</h4></div>
-      <div class="review-box"><p>"Affordable and fast!"</p><h4>— Priya Sharma</h4></div>
-      <div class="review-box"><p>"Bike was perfect."</p><h4>— Rohan Singh</h4></div>
+      <div class="review-box">
+        <p>"Amazing service!"</p>
+        <h4>— Akash Verma</h4>
+      </div>
+      <div class="review-box">
+        <p>"Affordable and fast!"</p>
+        <h4>— Priya Sharma</h4>
+      </div>
+      <div class="review-box">
+        <p>"Bike was perfect."</p>
+        <h4>— Rohan Singh</h4>
+      </div>
     </div>
   </section>
 
@@ -257,12 +207,19 @@
     <div class="footer-container">
       <div class="footer-box">
         <h4>Our Branches</h4>
-        <p>Bhopal</p><p>Indore</p><p>Mumbai</p><p>Delhi</p>
+        <p>Bhopal</p>
+        <p>Indore</p>
+        <p>Mumbai</p>
+        <p>Delhi</p>
       </div>
 
       <div class="footer-box">
         <h4>Quick Links</h4>
-        <p>Home</p><p>Vehicles</p><p>Services</p><p>Reviews</p><p>Contact</p>
+        <p>Home</p>
+        <p>Vehicles</p>
+        <p>Services</p>
+        <p>Reviews</p>
+        <p>Contact</p>
       </div>
 
       <div class="footer-box">
@@ -285,7 +242,10 @@
   </footer>
 
   <!-- JS -->
-  <script src="bikerental.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/bikes.js"></script>
 
 </body>
+
 </html>

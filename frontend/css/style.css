@@ -1,0 +1,671 @@
+/* ============================================================
+   1. RESET & VARIABLES
+============================================================ */
+:root {
+    --primary: #FFD700;
+    /* Gold */
+    --primary-dark: #e6c200;
+    --dark: #111;
+    --light: #fff;
+    --gray: #f4f4f4;
+    --text-gray: #555;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #f8f9fa;
+    color: var(--dark);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Universal Image Fix */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ============================================================
+   2. NAVBAR
+============================================================ */
+.navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    background: rgba(17, 17, 17, 0.95);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 1100;
+    border-bottom: 1px solid #333;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--light);
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: var(--primary);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: var(--light);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    transition: 0.3s;
+    position: relative;
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+.login-btn {
+    background: var(--primary);
+    padding: 8px 25px;
+    border-radius: 50px;
+    color: var(--dark) !important;
+    font-weight: 700 !important;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.login-btn:hover {
+    transform: scale(1.05);
+    background: var(--primary-dark);
+}
+
+.menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--light);
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* ============================================================
+   3. HERO SECTION (Fixed & Improved)
+============================================================ */
+.hero {
+    /* Height & Layout */
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 5%;
+    position: relative;
+    overflow: hidden;
+    /* Fallback color (in case image loads slow) */
+    background-color: #111;
+    color: white;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    /* Image at the bottom */
+    background: url("/image/bg.png") no-repeat center center;
+
+    /* 'contain' keeps the bikes fully visible without stretching */
+    background-size: contain;
+
+    /* CRITICAL FIX: Make the empty space White to match the image background */
+    background-color: #ffffff;
+
+    z-index: 1;
+}
+
+/* 2. The Dark Overlay (Stays the same) */
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    /* This darkens the white background so your text remains readable */
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.2) 100%);
+    z-index: 2;
+}
+
+/* 3. The Text Content */
+.hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 650px;
+    animation: fadeUp 1s ease forwards;
+}
+
+/* Main Heading Styling */
+.hero-content h1 {
+    font-size: clamp(40px, 6vw, 70px);
+    /* Responsive sizing */
+    line-height: 1.1;
+    font-weight: 800;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    /* Shadow for readability */
+}
+
+/* Highlights "Bike Today" in Gold/Yellow */
+.hero-content h1 span {
+    color: var(--primary);
+    display: inline-block;
+    /* Fixes spacing issues */
+}
+
+/* Subtitle Styling */
+.hero-content p {
+    font-size: clamp(16px, 2vw, 20px);
+    margin-bottom: 35px;
+    color: #eee;
+    border-left: 5px solid var(--primary);
+    /* Thicker gold bar */
+    padding-left: 20px;
+    line-height: 1.5;
+}
+
+/* Hero Button Styling */
+.hero-btn {
+    padding: 15px 45px;
+    background: var(--primary);
+    color: var(--dark);
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    font-weight: 800;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
+    /* Gold glow */
+}
+
+/* Button Hover Effect */
+.hero-btn:hover {
+    background: var(--light);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(255, 255, 255, 0.2);
+    /* White glow */
+}
+
+/* ============================================================
+   4. SECTIONS (General)
+============================================================ */
+section {
+    padding: 80px 5%;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 50px;
+    color: var(--dark);
+    position: relative;
+}
+
+.section-title span {
+    color: var(--primary-dark);
+}
+
+/* ============================================================
+   5. BIKE LIST (Grid System)
+============================================================ */
+.bike-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    width: 100%;
+}
+
+.bike-card {
+    background: var(--light);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.bike-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.bike-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    background: #eee;
+}
+
+.bike-info {
+    padding: 20px;
+}
+
+.bike-card h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.bike-card .price {
+    color: var(--primary-dark);
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.rent-btn {
+    width: 100%;
+    padding: 12px;
+    background: var(--dark);
+    color: var(--light);
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.rent-btn:hover {
+    background: var(--primary);
+    color: var(--dark);
+}
+
+/* ============================================================
+   6. ABOUT SECTION
+============================================================ */
+.about-box {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.about-box img {
+    flex: 1 1 400px;
+    border-radius: 20px;
+    box-shadow: 20px 20px 0px var(--primary);
+}
+
+.about-content {
+    flex: 1 1 350px;
+}
+
+.about-content h3 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+/* ============================================================
+   7. SERVICES SECTION
+============================================================ */
+.service-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.service-box {
+    flex: 1 1 250px;
+    background: var(--light);
+    padding: 40px 20px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    border-top: 5px solid transparent;
+    transition: 0.3s;
+}
+
+.service-box:hover {
+    border-top: 5px solid var(--primary);
+    transform: translateY(-5px);
+}
+
+.service-box i {
+    font-size: 45px;
+    color: var(--primary-dark);
+    margin-bottom: 20px;
+}
+
+/* ============================================================
+   8. REVIEWS SECTION
+============================================================ */
+.reviews {
+    background-color: #fafafa;
+}
+
+.review-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.review-box {
+    background: var(--light);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    flex: 1 1 300px;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+}
+
+.review-box p {
+    font-style: italic;
+    color: #666;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.review-box h4 {
+    color: var(--dark);
+    font-weight: 700;
+}
+
+.review-box::before {
+    content: "\201C";
+    /* Quote Icon */
+    font-size: 60px;
+    color: var(--primary);
+    opacity: 0.3;
+    position: absolute;
+    top: 10px;
+    left: 20px;
+}
+
+/* ============================================================
+   9. CONTACT SECTION
+============================================================ */
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--light);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #eee;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--primary);
+}
+
+.contact-form button {
+    background: var(--primary);
+    color: var(--dark);
+    font-weight: 700;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.contact-form button:hover {
+    background: var(--primary-dark);
+}
+
+/* ============================================================
+   10. FOOTER
+============================================================ */
+footer {
+    background: #1a1a1a;
+    color: var(--light);
+    padding: 70px 5% 20px;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.footer-box {
+    flex: 1 1 200px;
+}
+
+.footer-box h4 {
+    color: var(--primary);
+    margin-bottom: 25px;
+    font-size: 20px;
+}
+
+.footer-box p {
+    margin-bottom: 12px;
+    color: #bbb;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.footer-box p:hover {
+    color: var(--light);
+    padding-left: 5px;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+    color: #666;
+}
+
+/* ============================================================
+   11. POPUP STYLES
+============================================================ */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    backdrop-filter: blur(5px);
+}
+
+.popup-content {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+    animation: popupAnim 0.3s ease;
+}
+
+.popup-content h2 {
+    margin-bottom: 20px;
+    color: var(--dark);
+}
+
+.popup-content input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.popup-content button {
+    width: 100%;
+    padding: 12px;
+    background: var(--primary);
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+    border-radius: 5px;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #aaa;
+}
+
+@keyframes popupAnim {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================================
+   12. MOBILE RESPONSIVENESS (MUST BE AT THE BOTTOM)
+============================================================ */
+
+/* Tablet & Smaller Laptops */
+@media (max-width: 992px) {
+    .hero {
+        background-attachment: scroll;
+    }
+
+    .hero-content h1 {
+        font-size: 50px;
+    }
+}
+
+/* Mobile Phones (Portrait) */
+@media (max-width: 768px) {
+
+    /* Show Hamburger Menu */
+    .menu-toggle {
+        display: block;
+    }
+
+    /* Slide-out Menu Drawer */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        height: 100vh;
+        background: rgba(17, 17, 17, 0.98);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.4s ease-in-out;
+        z-index: 1000;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+    }
+
+    /* When Active Class is added by JS */
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-links a {
+        font-size: 22px;
+        margin: 15px 0;
+    }
+
+    /* Sections Padding Fix */
+    section {
+        padding: 60px 5%;
+    }
+
+    /* About Section Stacking */
+    .about-box {
+        flex-direction: column;
+    }
+
+    .about-box img {
+        width: 100%;
+        box-shadow: none;
+        margin-bottom: 20px;
+    }
+
+    /* Typography Fixes */
+    .hero-content h1 {
+        font-size: 40px;
+    }
+
+    .hero-content p {
+        border: none;
+        padding: 0;
+    }
+}

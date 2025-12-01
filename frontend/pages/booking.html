@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Ride - RideOn</title>
+    
+    <link rel="stylesheet" href="../css/style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body { background-color: #f8f9fa; padding-top: 80px; font-family: 'Poppins', sans-serif; }
+        
+        .booking-container {
+            max-width: 900px;
+            margin: 50px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .bike-details { flex: 1; text-align: center; }
+        .bike-details img { 
+            width: 100%; 
+            max-width: 400px; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .bike-details h2 { margin-top: 20px; font-size: 28px; }
+        .price-tag { 
+            font-size: 24px; color: #D4A373; font-weight: bold; margin: 10px 0; 
+        }
+
+        .booking-form { flex: 1; display: flex; flex-direction: column; gap: 15px; }
+        .booking-form label { font-weight: 600; margin-bottom: -10px; }
+        .booking-form input { 
+            padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; 
+        }
+        .confirm-btn {
+            background-color: #D4A373; color: white; border: none; padding: 15px;
+            font-size: 18px; font-weight: bold; border-radius: 8px; cursor: pointer;
+            margin-top: 20px; transition: 0.3s;
+        }
+        .confirm-btn:hover { background-color: #bfa15f; transform: scale(1.02); }
+    </style>
+</head>
+<body>
+
+    <header class="navbar" style="background:#222;">
+        <div class="logo">Ride<span>On</span></div>
+        <nav class="nav-links">
+            <a href="../index.html" style="color:white;">Home</a>
+        </nav>
+    </header>
+
+    <div class="booking-container">
+        <div class="bike-details">
+            <img id="bike-image" src="" alt="Selected Bike">
+            <h2 id="display-name">Loading Bike...</h2>
+            <div id="display-price" class="price-tag"></div>
+        </div>
+
+        <form id="booking-form" class="booking-form">
+            <h3>Booking Details</h3>
+
+            <label>Bike Name</label>
+            <input type="text" id="bike-name" readonly style="background:#eee;">
+
+            <label>Price Per Day</label>
+            <input type="text" id="bike-price" readonly style="background:#eee;">
+
+            <label>Start Date</label>
+            <input type="date" id="start-date" required>
+
+            <label>End Date</label>
+            <input type="date" id="end-date" required>
+
+            <button type="submit" class="confirm-btn">Confirm Booking</button>
+        </form>
+    </div>
+
+    <script src="../js/booking.js"></script>
+
+</body>
+</html>
