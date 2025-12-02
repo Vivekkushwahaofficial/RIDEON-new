@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
+const path = require("path"); // <--- ✅ ADDED THIS (Required for file paths)
 
 dotenv.config();
 const app = express();
@@ -10,22 +11,23 @@ const app = express();
 // ---------- MIDDLEWARE ----------
 app.use(express.json());
 
-// FIX 1: Allow ANY frontend connection (Easiest for development)
-// This prevents the "localhost" vs "127.0.0.1" error
+// FIX 1: Allow ANY frontend connection
 app.use(cors({
     origin: "*", 
     methods: "GET,POST,PUT,DELETE",
     credentials: true
 }));
 
+// ✅ FIX 3: SERVE IMAGES PUBLICLY
+// This allows the frontend to access files in your 'image' folder
+app.use("/image", express.static(path.join(__dirname, "image")));
+
 // ---------- CONNECT DATABASE ----------
 connectDB();
 
 // ---------- ROUTES ----------
-// FIX 2: Changed from "/api/auth" to "/api/users" to match your frontend code!
 app.use("/api/users", require("./routes/userRoutes"));
 app.use("/api/bikes", require("./routes/bikeRoutes"));
-// app.use("/api/bookings", require("./routes/bookingRoutes")); // Added this for later
 
 // Root Test Route
 app.get("/", (req, res) => {

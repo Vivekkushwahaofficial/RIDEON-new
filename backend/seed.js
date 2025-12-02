@@ -6,9 +6,9 @@ dotenv.config();
 const Bike = require("./models/bikeModel");
 
 const bikes = [
-  // NOTICE: No spaces in the image paths now!
-  { name: "R15 V5", pricePerDay: 1200, image: "../image/r15-v5.jpeg" },
-  { name: "KTM Duke", pricePerDay: 1200, image: "../image/ktm-duke.jpeg" },
+  // ✅ FIX: All paths now start with "/image/" (No ".." and no spaces)
+  { name: "R15 V5", pricePerDay: 1200, image: "/image/r15-v5.jpeg" },
+  { name: "KTM Duke", pricePerDay: 1200, image: "/image/ktm-duke.jpeg" },
   { name: "MT 15", pricePerDay: 1000, image: "/image/mt-15.jpeg" },
   { name: "Classic 350", pricePerDay: 1200, image: "/image/classic-350.jpeg" },
   { name: "Splendor Plus", pricePerDay: 700, image: "/image/splendor-plus.jpeg" },
