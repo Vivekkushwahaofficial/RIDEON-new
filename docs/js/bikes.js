@@ -1,5 +1,8 @@
 // frontend/js/bikes.js
-const BIKES_URL = 'http://localhost:5000/api/bikes';
+
+// ✅ FIX 1: Point to your Live Render Backend (Not Localhost)
+const API_BASE_URL = 'https://rideon-new.onrender.com';
+const BIKES_URL = `${API_BASE_URL}/api/bikes`;
 
 document.addEventListener('DOMContentLoaded', () => {
     fetchBikes();
@@ -17,25 +20,22 @@ async function fetchBikes() {
             
             bikes.forEach(bike => {
                 // ===============================================
-                // 1. LINK LOGIC (The Fix for "Cannot GET")
+                // 1. LINK LOGIC (Navigation)
                 // ===============================================
-                // We check: Are we already inside the 'pages' folder?
                 const isPagesFolder = window.location.pathname.includes('/pages/');
                 
-                // If we are NOT in pages (like index.html), we must add 'pages/'
-                // If we ARE in pages, we just link to 'booking.html'
+                // If we are inside /pages/, link directly to booking.html
+                // If we are at root (index.html), link to pages/booking.html
                 const linkPath = isPagesFolder 
                                  ? `booking.html?bikeId=${bike._id}` 
                                  : `pages/booking.html?bikeId=${bike._id}`;
 
                 // ===============================================
-                // 2. IMAGE LOGIC (Keeps your images working)
+                // 2. IMAGE LOGIC (The "404" Fix)
                 // ===============================================
-                let cleanPath = bike.image.startsWith('/') ? bike.image.substring(1) : bike.image;
-                
-                // If we are in 'pages', we need to go up one level (../)
-                // If we are at root, we might need to go up (../) based on your Blue Box test
-                const imagePath = `../${cleanPath}`; 
+                // We must tell the browser: "Get this image from the Render Server"
+                // This combines "https://rideon...com" + "/image/bike.jpg"
+                const imagePath = `${API_BASE_URL}${bike.image}`;
 
                 const bikeCard = `
                     <div class="bike-card">
