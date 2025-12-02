@@ -1,14 +1,14 @@
 // frontend/js/auth.js
-const API_URL = "http://localhost:5000/api/users"; 
+const API_URL = "https://rideon-new.onrender.com/api/users";
 
 // LOGIN LOGIC
 const loginForm = document.getElementById("login-form");
 
 if (loginForm) {
     loginForm.addEventListener("submit", async (e) => {
-        e.preventDefault(); // Stop page reload
+        e.preventDefault();
 
-        console.log("Login Button Clicked!"); // Debugging log
+        console.log("Login Button Clicked!");
 
         const email = document.getElementById("login-email").value;
         const password = document.getElementById("login-password").value;
@@ -24,31 +24,29 @@ if (loginForm) {
             console.log("Server response:", data);
 
             if (data.success) {
-                // Save Token
                 localStorage.setItem("userToken", data.token);
                 localStorage.setItem("userInfo", JSON.stringify(data.user));
                 
                 alert("Login Successful!");
-                closeLogin(); // Close popup
-                window.location.reload(); // Refresh to update Navbar
+                closeLogin();
+                window.location.reload();
             } else {
                 alert(data.message || "Invalid Email or Password");
             }
         } catch (error) {
             console.error("Error:", error);
-            alert("Server connection failed. Is Backend running?");
+            alert("Backend not responding!");
         }
     });
 }
 
-// ... (Keep your Signup logic below) ...
 // SIGNUP LOGIC
 const signupForm = document.getElementById("signup-form");
+
 if (signupForm) {
     signupForm.addEventListener("submit", async (e) => {
         e.preventDefault();
-        
-        // precise IDs to avoid conflict
+
         const name = document.getElementById("signup-name").value;
         const email = document.getElementById("signup-email").value;
         const password = document.getElementById("signup-password").value;
@@ -60,12 +58,13 @@ if (signupForm) {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ name, email, password, phone }),
             });
+
             const data = await response.json();
-            
+
             if (data.success) {
                 alert("Registration Successful! Please Login.");
-                closeSignup(); // Close the popup
-                openLogin();   // Open login popup
+                closeSignup();
+                openLogin();
             } else {
                 alert(data.message || "Registration Failed");
             }
