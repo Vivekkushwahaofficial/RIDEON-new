@@ -134,7 +134,7 @@ img {
     height: 100%;
 
     /* Image at the bottom */
-    background: url("/image/bg.png") no-repeat center center;
+    background: url("/backend/image/bg.png") no-repeat center center;
 
     /* 'contain' keeps the bikes fully visible without stretching */
     background-size: contain;
