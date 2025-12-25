@@ -1,6 +1,5 @@
 // frontend/js/bikes.js
 
-// ✅ FIX 1: Point to your Live Render Backend (Not Localhost)
 const API_BASE_URL = 'https://rideon-new.onrender.com';
 const BIKES_URL = `${API_BASE_URL}/api/bikes`;
 
@@ -11,16 +10,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function fetchBikes() {
     try {
-        const response = await fetch(BIKES_URL);
+        // ===============================================
+        // 1. AI CONNECTION UPDATE: GET USER TOKEN
+        // ===============================================
+        const token = localStorage.getItem('userToken');
+        
+        // Create headers. If user is logged in, attach their ID card (Token)
+        const headers = {
+            'Content-Type': 'application/json'
+        };
+        
+        if (token) {
+            headers['Authorization'] = `Bearer ${token}`;
+        }
+
+        // ===============================================
+        // 2. FETCH WITH HEADERS
+        // ===============================================
+        // We now send the headers so the Backend knows who we are
+        const response = await fetch(BIKES_URL, {
+            method: 'GET',
+            headers: headers
+        });
+
         const bikes = await response.json();
         const container = document.getElementById('bike-container');
 
         if (container) {
             container.innerHTML = '';
             
+            // If the backend sends an empty list or error
+            if (bikes.length === 0) {
+                container.innerHTML = '<p style="text-align:center;">No bikes available right now.</p>';
+                return;
+            }
+
             bikes.forEach(bike => {
                 // ===============================================
-                // 1. LINK LOGIC (Navigation)
+                // 3. LINK LOGIC (Navigation)
                 // ===============================================
                 const isPagesFolder = window.location.pathname.includes('/pages/');
                 
@@ -31,14 +58,19 @@ async function fetchBikes() {
                                  : `pages/booking.html?bikeId=${bike._id}`;
 
                 // ===============================================
-                // 2. IMAGE LOGIC (The "404" Fix)
+                // 4. IMAGE LOGIC (The "404" Fix)
                 // ===============================================
-                // We must tell the browser: "Get this image from the Render Server"
-                // This combines "https://rideon...com" + "/image/bike.jpg"
                 const imagePath = `${API_BASE_URL}${bike.image}`;
 
+                // Optional: Check if this bike was recommended by AI
+                // (Assuming your backend adds a 'relevanceScore' property)
+                const aiBadge = bike.relevanceScore > 0 
+                    ? `<span style="background:gold; color:black; padding:2px 8px; border-radius:10px; font-size:12px; position:absolute; top:10px; right:10px;">Recommended</span>` 
+                    : '';
+
                 const bikeCard = `
-                    <div class="bike-card">
+                    <div class="bike-card" style="position:relative;">
+                        ${aiBadge}
                         <img src="${imagePath}" alt="${bike.name}" 
                              style="width:100%; height:200px; object-fit:cover;"
                              onerror="this.src='https://placehold.co/600x400?text=No+Image'">

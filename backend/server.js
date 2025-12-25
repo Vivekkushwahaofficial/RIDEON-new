@@ -37,3 +37,14 @@ app.get("/", (req, res) => {
 // ---------- START SERVER ----------
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+// ... existing code ...
+
+// ---------- ROUTES ----------
+app.use("/api/users", require("./routes/userRoutes"));
+app.use("/api/bikes", require("./routes/bikeRoutes"));
+
+// ✅ ADD THIS NEW LINE HERE:
+app.use("/api/bookings", require("./routes/bookingRoutes"));
+
+// ... existing code ...
